@@ -1,0 +1,2043 @@
+{
+  "version": "2.0",
+  "description": "Fixed 100-query UDL benchmark grounded in the original 541-page UDL book PDF and 69 chapter notebooks. Covers all 21 chapters, equations, figures, problems, notebook implementations, cross-modal mixed cases, and verified negative unsupported queries.",
+  "cases": [
+    {
+      "id": "c01-theory",
+      "query": "How does the introductory chapter define the distinction between machine learning and artificial intelligence?",
+      "category": "theory",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "1",
+          "pdf_page": 15,
+          "quotes": [
+            "simulate intelligent behavior",
+            "Machine learning is a subset of AI"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "1",
+              "pdf_page": 16,
+              "figure_number": "1.1",
+              "quotes": [
+                "Machine learning is an area of artificial intelligence that fits mathematical models to observed data"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c02-theory",
+      "query": "How does supervised learning formulate the relationship between inputs and outputs using a mathematical mapping?",
+      "category": "theory",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "2",
+          "pdf_page": 31,
+          "quotes": [
+            "mapping from one or more inputs to one or more outputs"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "2",
+              "pdf_page": 32,
+              "equation_number": "2.2",
+              "quotes": [
+                "y = f[x, ϕ]"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c03-theory",
+      "query": "What makes shallow neural networks capable of describing piecewise linear functions?",
+      "category": "theory",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "3",
+          "pdf_page": 41,
+          "quotes": [
+            "clipped by the ReLU function",
+            "positions where the three lines cross zero become the three"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "3",
+              "pdf_page": 42,
+              "figure_number": "3.3",
+              "quotes": [
+                "different activation pattern in the hidden units"
+              ]
+            },
+            {
+              "source_id": "book",
+              "chapter": "3",
+              "pdf_page": 39,
+              "quotes": [
+                "we weight the three resulting",
+                "This returns the input when it is positive and zero otherwise"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c04-theory",
+      "query": "How does composing multiple hidden layers lead to deep neural network architectures?",
+      "category": "theory",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "4",
+          "pdf_page": 59,
+          "quotes": [
+            "network with two hidden layers",
+            "passing the output of one single-layer network into another"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "4",
+              "pdf_page": 56,
+              "figure_number": "4.1",
+              "quotes": [
+                "Composing two single-layer networks with three hidden units each"
+              ]
+            },
+            {
+              "source_id": "book",
+              "chapter": "4",
+              "pdf_page": 57,
+              "quotes": [
+                "special case of a deep network with two hidden layers"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c05-theory",
+      "query": "How does the principle of maximum likelihood guide the construction of neural network loss functions?",
+      "category": "theory",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "5",
+          "pdf_page": 74,
+          "equation_number": "5.4",
+          "quotes": [
+            "negative log-likelihood criterion",
+            "final loss function"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "5",
+              "pdf_page": 72,
+              "quotes": [
+                "choose a parametric distribution",
+                "Maximum likelihood criterion"
+              ]
+            },
+            {
+              "source_id": "book",
+              "chapter": "5",
+              "pdf_page": 71,
+              "figure_number": "5.1",
+              "quotes": [
+                "Minimizing the loss function corresponds to maximizing the probability of the training outputs"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c06-theory",
+      "query": "Why is iterative optimization required for fitting neural network parameters rather than solving directly in closed form?",
+      "category": "theory",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "2",
+          "pdf_page": 36,
+          "quotes": [
+            "no closed-form solution",
+            "gradient descent approach works for more complex models"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c07-theory",
+      "query": "What challenges arise when computing gradients and initializing weights in deep architectures?",
+      "category": "theory",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "7",
+          "pdf_page": 122,
+          "quotes": [
+            "vanishing gradient problem and the exploding gradient problem",
+            "gradient magnitudes may decrease or increase uncontrollably"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "7",
+              "pdf_page": 110,
+              "quotes": [
+                "computed for every parameter at every iteration",
+                "initial losses and their gradients can be extremely large or small"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c08-theory",
+      "query": "How should performance be measured to distinguish training convergence from generalization ability?",
+      "category": "theory",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "8",
+          "pdf_page": 134,
+          "quotes": [
+            "separate test set of input/output pairs"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "8",
+              "pdf_page": 132,
+              "quotes": [
+                "perform perfectly on the training data",
+                "generalize well to new test data"
+              ]
+            },
+            {
+              "source_id": "book",
+              "chapter": "8",
+              "pdf_page": 147,
+              "quotes": [
+                "validation set",
+                "measure its performance on the test set"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c09-theory",
+      "query": "What mechanisms do regularization techniques use to constrain model capacity and prevent overfitting?",
+      "category": "theory",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "9",
+          "pdf_page": 152,
+          "quotes": [
+            "reduce the generalization gap",
+            "adding explicit terms to the loss function that favor certain parameter choices"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "9",
+              "pdf_page": 153,
+              "equation_number": "9.2",
+              "quotes": [
+                "additional term",
+                "less preferred"
+              ]
+            },
+            {
+              "source_id": "book",
+              "chapter": "9",
+              "pdf_page": 154,
+              "equation_number": "9.5",
+              "quotes": [
+                "penalizes the sum of the squares of the parameter values"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c10-theory",
+      "query": "How do convolutional networks leverage weight sharing and translation equivariance to process image data?",
+      "category": "theory",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "10",
+          "pdf_page": 175,
+          "quotes": [
+            "parameters shared across the whole image",
+            "re-learn the interpretation of the pixels at every position"
+          ]
+        },
+        {
+          "source_id": "book",
+          "chapter": "10",
+          "pdf_page": 176,
+          "equation_number": "10.2",
+          "quotes": [
+            "equivariant or covariant to a transformation",
+            "output changes in the same way under the transformation as the input"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c11-theory",
+      "query": "Why do residual networks incorporate identity shortcut connections to train very deep models?",
+      "category": "theory",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "11",
+          "pdf_page": 204,
+          "figure_number": "11.4",
+          "quotes": [
+            "added back to its input, which is passed via a parallel computational path called a residual or skip connection"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "11",
+              "pdf_page": 200,
+              "quotes": [
+                "computes an additive change to the current representation instead of transforming it directly",
+                "allows deeper networks to be trained"
+              ]
+            },
+            {
+              "source_id": "book",
+              "chapter": "11",
+              "pdf_page": 213,
+              "quotes": [
+                "Residual networks allow much deeper networks to be trained"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c12-theory",
+      "query": "How does the transformer architecture replace recurrent connections with self-attention across sequences?",
+      "category": "theory",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "12",
+          "pdf_page": 247,
+          "quotes": [
+            "dispensing with the recurrent structure and replacing it with",
+            "self-attention"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c13-theory",
+      "query": "How do graph neural networks aggregate neighborhood node features while preserving permutation invariance?",
+      "category": "theory",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "13",
+          "pdf_page": 264,
+          "equation_number": "13.8",
+          "quotes": [
+            "aggregate information from neighboring nodes by summing their node embeddings"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "13",
+              "pdf_page": 272,
+              "quotes": [
+                "invariant to permutation",
+                "max pooling aggregation operator"
+              ],
+              "equation_number": "13.21"
+            }
+          ]
+        },
+        {
+          "source_id": "book",
+          "chapter": "13",
+          "pdf_page": 263,
+          "equation_number": "13.6",
+          "quotes": [
+            "permutation of the node indices does not change the graph",
+            "layer must be equivariant"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "13",
+              "pdf_page": 272,
+              "quotes": [
+                "invariant to permutation",
+                "max pooling aggregation operator"
+              ],
+              "equation_number": "13.21"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c14-theory",
+      "query": "What is the primary objective of unsupervised learning when training without external target labels?",
+      "category": "theory",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "14",
+          "pdf_page": 283,
+          "quotes": [
+            "learned from a set of observed data",
+            "absence of labels",
+            "generate plausible new samples"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "14",
+              "pdf_page": 284,
+              "figure_number": "14.1",
+              "quotes": [
+                "trained on datasets without labels",
+                "synthesize (generate) new examples with similar statistics"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c15-theory",
+      "query": "How do generative adversarial networks formulate the minimax game between generator and discriminator?",
+      "category": "theory",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "15",
+          "pdf_page": 292,
+          "equation_number": "15.4",
+          "quotes": [
+            "GAN training is characterized as a minimax game",
+            "generator tries to find new ways to fool the discriminator"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "15",
+              "pdf_page": 293,
+              "figure_number": "15.2",
+              "quotes": [
+                "GAN loss functions",
+                "discriminator into assigning the generated samples a high probability"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c16-theory",
+      "query": "How do normalizing flows compute exact data likelihoods via invertible transformations?",
+      "category": "theory",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "16",
+          "pdf_page": 321,
+          "equation_number": "16.3",
+          "quotes": [
+            "likelihood of a sample under this distribution is",
+            "inverse of the determinant of the"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c17-theory",
+      "query": "How do variational autoencoders approximate intractable posterior distributions over latent variables?",
+      "category": "theory",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "17",
+          "pdf_page": 350,
+          "quotes": [
+            "Variational approximation",
+            "intractable because we can’t evaluate the evidence term",
+            "approximate the true posterior"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "17",
+              "pdf_page": 351,
+              "figure_number": "17.8",
+              "quotes": [
+                "variational approximation chooses a family of distributions",
+                "closest member of this family to the true posterior"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c18-theory",
+      "query": "How do diffusion models generate data by reversing a gradual Gaussian noise degradation process?",
+      "category": "theory",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "18",
+          "pdf_page": 364,
+          "figure_number": "18.1",
+          "quotes": [
+            "gradually mixes the data with noise until only noise remains",
+            "decoder (reverse process) is learned",
+            "removing noise at each stage"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "18",
+              "pdf_page": 363,
+              "quotes": [
+                "decoder reverses this process",
+                "gradually blends the input with samples of white noise"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c19-theory",
+      "query": "What framework does reinforcement learning use for sequential decision-making under reward signals?",
+      "category": "theory",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "19",
+          "pdf_page": 388,
+          "quotes": [
+            "sequential decision-making framework in which agents learn to perform actions in an environment with the goal of maximizing received rewards"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "19",
+              "pdf_page": 390,
+              "figure_number": "19.3",
+              "quotes": [
+                "Markov decision process",
+                "alternating states"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c20-theory",
+      "query": "Why does deep learning generalize well despite severe overparameterization and non-convex loss surfaces?",
+      "category": "theory",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "20",
+          "pdf_page": 425,
+          "quotes": [
+            "there are few or no bad local minima",
+            "details of the training process determine which of the degenerate family of minima"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "20",
+              "pdf_page": 426,
+              "quotes": [
+                "flat minima in the loss function generalize better than sharp minima"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c21-theory",
+      "query": "What ethical challenges and algorithmic bias concerns are associated with deploying deep learning systems?",
+      "category": "theory",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "21",
+          "pdf_page": 435,
+          "quotes": [
+            "algorithmic bias, lack of explainability, data privacy violations"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "21",
+              "pdf_page": 436,
+              "quotes": [
+                "Bias and fairness",
+                "illegitimate factors that impact an output"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c22-theory",
+      "query": "What is the formal statement and implication of the universal approximation theorem for shallow networks?",
+      "category": "theory",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "3",
+          "pdf_page": 43,
+          "quotes": [
+            "universal approximation theorem proves that for any continuous function, there exists a shallow network that can approximate this function to any specified precision"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "3",
+              "pdf_page": 44,
+              "figure_number": "3.5",
+              "quotes": [
+                "describe any given continuous function defined on a compact subset"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c23-theory",
+      "query": "How does the backpropagation algorithm propagate error signals backward through a computational graph?",
+      "category": "theory",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "7",
+          "pdf_page": 116,
+          "figure_number": "7.4",
+          "quotes": [
+            "Backpropagation backward pass",
+            "work backward from the end of the function computing the derivatives"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "7",
+              "pdf_page": 118,
+              "quotes": [
+                "backward pass",
+                "working backward through the network, we can reuse the previous computations"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c24-theory",
+      "query": "How does adding a momentum term to gradient descent dampen oscillations along steep ravines?",
+      "category": "theory",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "6",
+          "pdf_page": 100,
+          "equation_number": "6.11",
+          "quotes": [
+            "reduced oscillatory behavior in valleys",
+            "weighted combination of the gradient computed from the current batch and the direction moved in the previous step"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "6",
+              "pdf_page": 101,
+              "figure_number": "6.7",
+              "quotes": [
+                "Stochastic gradient descent with momentum",
+                "smooths out the trajectory"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c25-theory",
+      "query": "How does the Adam optimizer combine running estimates of both first and second raw gradient moments?",
+      "category": "theory",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "6",
+          "pdf_page": 104,
+          "equation_number": "6.15",
+          "quotes": [
+            "momentum coeﬀicients for the two statistics",
+            "taking a weighted average over the history of each of these statistics"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "6",
+              "pdf_page": 102,
+              "quotes": [
+                "Adaptive moment estimation, or Adam",
+                "adds momentum to both the estimate of the gradient and the squared gradient"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c26-theory",
+      "query": "How is the scaled dot-product self-attention calculated between queries, keys, and values?",
+      "category": "theory",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "12",
+          "pdf_page": 228,
+          "equation_number": "12.9",
+          "quotes": [
+            "Scaled dot-product self-attention",
+            "dot products are scaled by the square root of the dimension"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c27-theory",
+      "query": "How does batch normalization stabilize activation distributions across mini-batches during training?",
+      "category": "theory",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "11",
+          "pdf_page": 208,
+          "quotes": [
+            "activations have mean δ and standard deviation γ",
+            "Both of these quantities are learned during training"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "11",
+              "pdf_page": 206,
+              "quotes": [
+                "shifts and rescales each activation",
+                "mean and variance across the batch"
+              ]
+            },
+            {
+              "source_id": "book",
+              "chapter": "11",
+              "pdf_page": 207,
+              "equation_number": "11.7",
+              "figure_number": "11.6",
+              "quotes": [
+                "transforms the input to each layer to have unit variance"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c28-theory",
+      "query": "What causes the double descent phenomenon in test risk as model capacity passes the interpolation threshold?",
+      "category": "theory",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "8",
+          "pdf_page": 143,
+          "quotes": [
+            "putative explanation for double descent",
+            "interpolates between the nearest data points increasingly smoothly"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c29-theory",
+      "query": "Why is the diffusion posterior q(z_{t-1}|z_t,x) tractable when q(z_{t-1}|z_t) is generally non-Gaussian, and how does this lead to a squared-mean-error objective for training reverse transitions?",
+      "category": "theory",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "18",
+          "pdf_page": 369,
+          "figure_number": "18.6",
+          "quotes": [
+            "In general, it is not normally distributed",
+            "This is normally distributed and can be computed in closed form"
+          ]
+        },
+        {
+          "source_id": "book",
+          "chapter": "18",
+          "pdf_page": 373,
+          "equation_number": "18.28",
+          "quotes": [
+            "The KL divergence between two normal distributions has a closed-form expression",
+            "squared difference between the means plus a constant"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c30-theory",
+      "query": "What mathematical definitions of fairness are used to evaluate bias in machine learning models?",
+      "category": "theory",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "21",
+          "pdf_page": 438,
+          "quotes": [
+            "define a mathematical criterion for fairness",
+            "separation measure in binary classification"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c31-equation",
+      "query": "What is the mathematical equation for the least squares loss function in 1D linear regression?",
+      "category": "equation",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "2",
+          "pdf_page": 33,
+          "equation_number": "2.5"
+        }
+      ]
+    },
+    {
+      "id": "c32-equation",
+      "query": "What is the functional form of a shallow neural network with a single hidden layer and ReLU activations?",
+      "category": "equation",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "3",
+          "pdf_page": 39,
+          "equation_number": "3.1"
+        }
+      ]
+    },
+    {
+      "id": "c33-equation",
+      "query": "How is the composition of network layers formally expressed in deep neural networks?",
+      "category": "equation",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "4",
+          "pdf_page": 63,
+          "equation_number": "4.16"
+        }
+      ]
+    },
+    {
+      "id": "c34-equation",
+      "query": "What is the equation for the binary cross-entropy loss function derived from the Bernoulli distribution?",
+      "category": "equation",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "5",
+          "pdf_page": 80,
+          "equation_number": "5.20"
+        }
+      ]
+    },
+    {
+      "id": "c35-equation",
+      "query": "What equation defines the parameter update rule when incorporating momentum into gradient descent?",
+      "category": "equation",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "6",
+          "pdf_page": 100,
+          "equation_number": "6.11"
+        }
+      ]
+    },
+    {
+      "id": "c36-equation",
+      "query": "What is the initial derivative expression for the loss gradient with respect to the network output in backpropagation?",
+      "category": "equation",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "7",
+          "pdf_page": 115,
+          "equation_number": "7.11"
+        }
+      ]
+    },
+    {
+      "id": "c37-equation",
+      "query": "How is the 1D discrete convolution operation mathematically defined for an input vector and kernel?",
+      "category": "equation",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "10",
+          "pdf_page": 177,
+          "equation_number": "10.3"
+        }
+      ]
+    },
+    {
+      "id": "c38-equation",
+      "query": "What is the algebraic expression for the residual block skip connection relating input to output?",
+      "category": "equation",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "11",
+          "pdf_page": 203,
+          "equation_number": "11.4"
+        }
+      ]
+    },
+    {
+      "id": "c39-equation",
+      "query": "What equation computes the attention matrix from the queries and keys in self-attention?",
+      "category": "equation",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "12",
+          "pdf_page": 224,
+          "equation_number": "12.5"
+        }
+      ]
+    },
+    {
+      "id": "c40-equation",
+      "query": "What is the mathematical formulation of the Evidence Lower Bound (ELBO) objective in variational autoencoders?",
+      "category": "equation",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "17",
+          "pdf_page": 347,
+          "equation_number": "17.15"
+        }
+      ]
+    },
+    {
+      "id": "c41-figure",
+      "query": "Which figure illustrates the taxonomy of machine learning into supervised, unsupervised, and reinforcement learning?",
+      "category": "figure",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "1",
+          "pdf_page": 16,
+          "figure_number": "1.1",
+          "quotes": [
+            "Machine learning"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c42-figure",
+      "query": "Which figure illustrates a 1D linear regression model with data points and residual errors?",
+      "category": "figure",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "2",
+          "pdf_page": 34,
+          "figure_number": "2.2",
+          "quotes": [
+            "Linear regression training data, model, and loss"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c43-figure",
+      "query": "Which figure depicts a shallow neural network with three hidden units and the resulting piecewise linear function?",
+      "category": "figure",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "3",
+          "pdf_page": 42,
+          "figure_number": "3.3",
+          "quotes": [
+            "Computation for function in figure 3.2a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c44-figure",
+      "query": "Which figure displays the activation patterns and region partitioning of a two hidden layer deep network?",
+      "category": "figure",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "4",
+          "pdf_page": 61,
+          "figure_number": "4.5",
+          "quotes": [
+            "Computation for the deep network",
+            "clipped to zero by the ReLU activation function"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c45-figure",
+      "query": "Which figure illustrates the vanishing gradient problem as gradients are backpropagated across many layers?",
+      "category": "figure",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "7",
+          "pdf_page": 124,
+          "figure_number": "7.7",
+          "quotes": [
+            "variance of the gradients in the backward pass",
+            "exploding gradient and vanishing gradient problems"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c46-figure",
+      "query": "Which figure demonstrates the 2D convolution kernel sliding across an input image grid?",
+      "category": "figure",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "10",
+          "pdf_page": 185,
+          "figure_number": "10.9",
+          "quotes": [
+            "2D convolutional layer",
+            "translating the kernel across the image grid in two dimensions"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c47-figure",
+      "query": "Which figure diagrams the query, key, and value flow in a transformer self-attention block?",
+      "category": "figure",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "12",
+          "pdf_page": 226,
+          "figure_number": "12.4",
+          "quotes": [
+            "Self-attention in matrix form",
+            "query matrix Q, key matrix K, and value matrix V"
+          ],
+          "alternatives": [
+            {
+              "source_id": "book",
+              "chapter": "12",
+              "pdf_page": 225,
+              "figure_number": "12.3",
+              "quotes": [
+                "Computing attention weights",
+                "Query vectors",
+                "These route the value vectors"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c48-figure",
+      "query": "Which figure shows the adversarial training dynamics between the generator and discriminator in a GAN?",
+      "category": "figure",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "15",
+          "pdf_page": 293,
+          "figure_number": "15.2",
+          "quotes": [
+            "GAN loss functions",
+            "discriminator parameters",
+            "generator parameters"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c49-figure",
+      "query": "Which figure shows the forward degradation and reverse generative trajectories over time in a diffusion model?",
+      "category": "figure",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "18",
+          "pdf_page": 364,
+          "figure_number": "18.1",
+          "quotes": [
+            "Diffusion model"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c50-figure",
+      "query": "Which figure illustrates the interactive feedback loop between the agent and environment in reinforcement learning?",
+      "category": "figure",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "19",
+          "pdf_page": 391,
+          "figure_number": "19.6",
+          "quotes": [
+            "Reinforcement learning loop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c51-problem",
+      "query": "Problem 2.1: To walk downhill on the loss function (equation 2.5), we measure its gradient with respect to the parameters phi0 and phi1. Calculate expressions for slopes dL/dphi0 and dL/dphi1.",
+      "category": "problem",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "2",
+          "pdf_page": 38,
+          "problem_number": "2.1",
+          "quotes": [
+            "walk “downhill” on the loss function"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c52-problem",
+      "query": "Problem 3.1: What kind of mapping from input to output would be created if the activation function in equation 3.1 was linear so that a[z] = psi0 + psi1*z?",
+      "category": "problem",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "3",
+          "pdf_page": 53,
+          "problem_number": "3.1",
+          "quotes": [
+            "activation function in equation 3.1 was linear"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c53-problem",
+      "query": "Problem 4.1: Consider composing the two neural networks in figure 4.8. Draw a plot of the relationship between input x and output y' for x in [-1, 1].",
+      "category": "problem",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "4",
+          "pdf_page": 67,
+          "problem_number": "4.1",
+          "quotes": [
+            "composing the two neural networks in figure 4.8"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c54-problem",
+      "query": "Problem 5.1: Show that the logistic sigmoid function sig[z] becomes 0 as z approaches negative infinity, is 0.5 when z=0, and becomes 1 as z approaches positive infinity.",
+      "category": "problem",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "5",
+          "pdf_page": 88,
+          "problem_number": "5.1",
+          "quotes": [
+            "Show that the logistic sigmoid function"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c55-problem",
+      "query": "Problem 6.1: Show that the derivatives of the least squares loss function in equation 6.5 are given by the expressions in equation 6.7.",
+      "category": "problem",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "6",
+          "pdf_page": 108,
+          "problem_number": "6.1",
+          "quotes": [
+            "derivatives of the least squares loss function in equation 6.5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c56-problem",
+      "query": "Problem 7.1: A two-layer network with two hidden units in each layer. Compute the derivatives of the output y with respect to the parameters.",
+      "category": "problem",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "7",
+          "problem_number": "7.1",
+          "quotes": [
+            "two-layer network with two hidden units",
+            "Compute the derivatives of the output y",
+            "each of the 13 parameters"
+          ],
+          "pdf_pages": [
+            128,
+            129
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c57-problem",
+      "query": "Problem 8.1: Will the multiclass cross-entropy training loss in figure 8.2 ever reach zero? Explain your reasoning.",
+      "category": "problem",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "8",
+          "pdf_page": 150,
+          "problem_number": "8.1",
+          "quotes": [
+            "Will the multiclass cross-entropy training loss in figure 8.2 ever reach zero?"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c58-problem",
+      "query": "Problem 9.1: Consider a model where the prior distribution over the parameters is a normal distribution with mean zero and variance sigma_phi^2. Show that the associated loss function has L2 regularization.",
+      "category": "problem",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "9",
+          "pdf_page": 174,
+          "problem_number": "9.1",
+          "quotes": [
+            "prior distribution over the parameters is a normal distribution"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c59-problem",
+      "query": "Problem 10.1: Show that the operation in equation 10.3 is equivariant with respect to translation.",
+      "category": "problem",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "10",
+          "pdf_page": 198,
+          "problem_number": "10.1",
+          "quotes": [
+            "equivariant with respect to translation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c60-problem",
+      "query": "Problem 12.1: Consider a self-attention mechanism that processes N inputs of length D to produce N outputs of the same size. How many weights and biases are used to compute queries, keys, and values?",
+      "category": "problem",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "12",
+          "pdf_page": 253,
+          "problem_number": "12.1",
+          "quotes": [
+            "self-attention mechanism that processes N inputs of length D"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c61-code",
+      "query": "Where in the chapter 1 notebook is a 2D linear function investigated and plotted?",
+      "category": "notebook_code",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap01/1_1_BackgroundMathematics.ipynb",
+          "chapter": "1",
+          "cell_index": 9,
+          "quotes": [
+            "Plot the 2D function",
+            "draw_2D_function(x1,x2,y)"
+          ],
+          "symbol": "draw_2D_function"
+        }
+      ]
+    },
+    {
+      "id": "c62-code",
+      "query": "Where in the chapter 2 notebook is the 1D linear regression model function f defined?",
+      "category": "notebook_code",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap02/2_1_Supervised_Learning.ipynb",
+          "chapter": "2",
+          "cell_index": 4,
+          "quotes": [
+            "def f(x, phi0, phi1):"
+          ],
+          "symbol": "f"
+        }
+      ]
+    },
+    {
+      "id": "c63-code",
+      "query": "Where in the chapter 2 notebook is the compute_loss function defined for linear regression?",
+      "category": "notebook_code",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap02/2_1_Supervised_Learning.ipynb",
+          "chapter": "2",
+          "cell_index": 7,
+          "quotes": [
+            "def compute_loss(x,y,phi0,phi1):"
+          ],
+          "symbol": "compute_loss"
+        }
+      ]
+    },
+    {
+      "id": "c64-code",
+      "query": "Where in the chapter 3 shallow network notebook is the ReLU exercise function defined with a TODO for its activation calculation?",
+      "category": "notebook_code",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap03/3_1_Shallow_Networks_I.ipynb",
+          "chapter": "3",
+          "cell_index": 4,
+          "quotes": [
+            "def ReLU(preactivation):",
+            "TODO write code to implement the ReLU"
+          ],
+          "symbol": "ReLU"
+        }
+      ]
+    },
+    {
+      "id": "c65-code",
+      "query": "Where in the chapter 3 activation functions notebook is the plotting routine for shallow neural network intermediate stages defined?",
+      "category": "notebook_code",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap03/3_4_Activation_Functions.ipynb",
+          "chapter": "3",
+          "cell_index": 3,
+          "quotes": [
+            "Plot the shallow neural network"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c66-code",
+      "query": "Where in the chapter 4 notebook is the function plot_neural_two_components defined for composed networks?",
+      "category": "notebook_code",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap04/4_1_Composing_Networks.ipynb",
+          "chapter": "4",
+          "cell_index": 5,
+          "quotes": [
+            "def plot_neural_two_components"
+          ],
+          "symbol": "plot_neural_two_components"
+        }
+      ]
+    },
+    {
+      "id": "c67-code",
+      "query": "Where in the chapter 5 least squares notebook is the get_parameters function defined to reset model weights?",
+      "category": "notebook_code",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap05/5_1_Least_Squares_Loss.ipynb",
+          "chapter": "5",
+          "cell_index": 4,
+          "quotes": [
+            "def get_parameters():"
+          ],
+          "symbol": "get_parameters"
+        }
+      ]
+    },
+    {
+      "id": "c68-code",
+      "query": "Where in the chapter 5 binary cross-entropy notebook is the plot_binary_classification visualization utility defined?",
+      "category": "notebook_code",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap05/5_2_Binary_Cross_Entropy_Loss.ipynb",
+          "chapter": "5",
+          "cell_index": 5,
+          "quotes": [
+            "def plot_binary_classification"
+          ],
+          "symbol": "plot_binary_classification"
+        }
+      ]
+    },
+    {
+      "id": "c69-code",
+      "query": "Where in the chapter 6 gradient descent notebook is the draw_model visualization helper defined?",
+      "category": "notebook_code",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap06/6_2_Gradient_Descent.ipynb",
+          "chapter": "6",
+          "cell_index": 5,
+          "quotes": [
+            "def draw_model(data,model,phi,title=None):"
+          ],
+          "symbol": "draw_model"
+        }
+      ]
+    },
+    {
+      "id": "c70-code",
+      "query": "Where in the chapter 6 Adam notebook is the fixed step size gradient descent baseline implemented?",
+      "category": "notebook_code",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap06/6_5_Adam.ipynb",
+          "chapter": "6",
+          "cell_index": 5,
+          "quotes": [
+            "def grad_descent(start_posn, n_steps, alpha):"
+          ],
+          "symbol": "grad_descent"
+        }
+      ]
+    },
+    {
+      "id": "c71-code",
+      "query": "Where in the chapter 7 toy backpropagation notebook is the composite forward function fn defined?",
+      "category": "notebook_code",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap07/7_1_Backpropagation_in_Toy_Model.ipynb",
+          "chapter": "7",
+          "cell_index": 5,
+          "quotes": [
+            "def fn(x, beta0, beta1, beta2, beta3"
+          ],
+          "symbol": "fn"
+        }
+      ]
+    },
+    {
+      "id": "c72-code",
+      "query": "Where in the chapter 8 double descent notebook is the He weight initialization routine weights_init defined?",
+      "category": "notebook_code",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap08/8_3_Double_Descent.ipynb",
+          "chapter": "8",
+          "cell_index": 5,
+          "quotes": [
+            "def weights_init(layer_in):"
+          ],
+          "symbol": "weights_init"
+        }
+      ]
+    },
+    {
+      "id": "c73-code",
+      "query": "Where in the chapter 9 regularization notebook are the 30 Gabor model training pairs created?",
+      "category": "notebook_code",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap09/9_1_L2_Regularization.ipynb",
+          "chapter": "9",
+          "cell_index": 3,
+          "quotes": [
+            "training data 30 pairs"
+          ],
+          "symbol": "data"
+        }
+      ]
+    },
+    {
+      "id": "c74-code",
+      "query": "Where in the chapter 10 1D convolution notebook is matplotlib used to draw the 1D input signal?",
+      "category": "notebook_code",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap10/10_1_1D_Convolution.ipynb",
+          "chapter": "10",
+          "cell_index": 5,
+          "quotes": [
+            "Draw the signal"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c75-code",
+      "query": "Where in the chapter 11 residual networks notebook is the training dataset loaded and transposed?",
+      "category": "notebook_code",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap11/11_2_Residual_Networks.ipynb",
+          "chapter": "11",
+          "cell_index": 5,
+          "quotes": [
+            "train_data_x = data['x'].transpose()"
+          ],
+          "symbol": "train_data_x"
+        }
+      ]
+    },
+    {
+      "id": "c76-code",
+      "query": "Where in the chapter 11 batch normalization notebook is train_data_x loaded from the data dictionary?",
+      "category": "notebook_code",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap11/11_3_Batch_Normalization.ipynb",
+          "chapter": "11",
+          "cell_index": 5,
+          "quotes": [
+            "train_data_x = data['x'].transpose()"
+          ],
+          "symbol": "train_data_x"
+        }
+      ]
+    },
+    {
+      "id": "c77-code",
+      "query": "Where in the chapter 12 self-attention notebook are the query, key, and value weight matrices introduced?",
+      "category": "notebook_code",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap12/12_1_Self_Attention.ipynb",
+          "chapter": "12",
+          "cell_index": 6,
+          "quotes": [
+            "omega_q = np.random.normal",
+            "omega_k = np.random.normal",
+            "omega_v = np.random.normal"
+          ],
+          "symbol_names": [
+            "omega_q",
+            "omega_k",
+            "omega_v"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c78-code",
+      "query": "Where in the chapter 13 graph notebook is the sample graph with zero-indexed nodes defined?",
+      "category": "notebook_code",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap13/13_1_Graph_Representation.ipynb",
+          "chapter": "13",
+          "cell_index": 4,
+          "quotes": [
+            "Define a graph"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c79-code",
+      "query": "Where in the chapter 15 GAN notebook is the get_real_data_batch sampling function implemented?",
+      "category": "notebook_code",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap15/15_1_GAN_Toy_Example.ipynb",
+          "chapter": "15",
+          "cell_index": 3,
+          "quotes": [
+            "def get_real_data_batch(n_sample):"
+          ],
+          "symbol": "get_real_data_batch"
+        }
+      ]
+    },
+    {
+      "id": "c80-code",
+      "query": "Where in the chapter 18 diffusion encoder notebook is the TrueDataDistribution Gaussian mixture class defined?",
+      "category": "notebook_code",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "Notebooks/Chap18/18_1_Diffusion_Encoder.ipynb",
+          "chapter": "18",
+          "cell_index": 5,
+          "quotes": [
+            "class TrueDataDistribution:"
+          ],
+          "symbol": "TrueDataDistribution"
+        }
+      ]
+    },
+    {
+      "id": "c81-mixed",
+      "query": "How is the 1D linear regression loss mathematically defined in chapter 2 of the book, and where does its notebook define the compute_loss exercise stub?",
+      "category": "mixed",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "2",
+          "pdf_page": 33,
+          "equation_number": "2.5"
+        },
+        {
+          "source_id": "Notebooks/Chap02/2_1_Supervised_Learning.ipynb",
+          "chapter": "2",
+          "cell_index": 7,
+          "quotes": [
+            "def compute_loss(x,y,phi0,phi1):",
+            "TODO Replace this line with the loss calculation"
+          ],
+          "symbol": "compute_loss"
+        }
+      ]
+    },
+    {
+      "id": "c82-mixed",
+      "query": "What is the mathematical formulation of a shallow neural network with ReLU units in chapter 3, and where is the ReLU exercise stub defined in notebook 3.1?",
+      "category": "mixed",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "3",
+          "pdf_page": 39,
+          "equation_number": "3.1"
+        },
+        {
+          "source_id": "Notebooks/Chap03/3_1_Shallow_Networks_I.ipynb",
+          "chapter": "3",
+          "cell_index": 4,
+          "quotes": [
+            "def ReLU(preactivation):",
+            "TODO write code to implement the ReLU"
+          ],
+          "symbol": "ReLU"
+        }
+      ]
+    },
+    {
+      "id": "c83-mixed",
+      "query": "How does chapter 4 formulate deep network composition in equation 4.16, and where is plot_neural_two_components defined in notebook 4.1?",
+      "category": "mixed",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "4",
+          "pdf_page": 63,
+          "equation_number": "4.16"
+        },
+        {
+          "source_id": "Notebooks/Chap04/4_1_Composing_Networks.ipynb",
+          "chapter": "4",
+          "cell_index": 5,
+          "quotes": [
+            "def plot_neural_two_components"
+          ],
+          "symbol": "plot_neural_two_components"
+        }
+      ]
+    },
+    {
+      "id": "c84-mixed",
+      "query": "What is the binary cross-entropy loss formula in chapter 5 (equation 5.20), and where is plot_binary_classification defined in notebook 5.2?",
+      "category": "mixed",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "5",
+          "pdf_page": 80,
+          "equation_number": "5.20"
+        },
+        {
+          "source_id": "Notebooks/Chap05/5_2_Binary_Cross_Entropy_Loss.ipynb",
+          "chapter": "5",
+          "cell_index": 5,
+          "quotes": [
+            "def plot_binary_classification"
+          ],
+          "symbol": "plot_binary_classification"
+        }
+      ]
+    },
+    {
+      "id": "c85-mixed",
+      "query": "What is the momentum update equation 6.11 in chapter 6, and where is the Gabor fitting model drawn in notebook 6.4?",
+      "category": "mixed",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "6",
+          "pdf_page": 100,
+          "equation_number": "6.11"
+        },
+        {
+          "source_id": "Notebooks/Chap06/6_4_Momentum.ipynb",
+          "chapter": "6",
+          "cell_index": 5,
+          "quotes": [
+            "def draw_model(data,model,phi,title=None):"
+          ],
+          "symbol": "draw_model"
+        }
+      ]
+    },
+    {
+      "id": "c86-mixed",
+      "query": "How does chapter 7 define the initial loss derivative with respect to the output in equation 7.11, and where is the composite function fn defined in notebook 7.1?",
+      "category": "mixed",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "7",
+          "pdf_page": 115,
+          "equation_number": "7.11"
+        },
+        {
+          "source_id": "Notebooks/Chap07/7_1_Backpropagation_in_Toy_Model.ipynb",
+          "chapter": "7",
+          "cell_index": 5,
+          "quotes": [
+            "def fn(x, beta0, beta1, beta2, beta3"
+          ],
+          "symbol": "fn"
+        }
+      ]
+    },
+    {
+      "id": "c87-mixed",
+      "query": "What explains the double descent curve in chapter 8, and where is weights_init defined in notebook 8.3?",
+      "category": "mixed",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "8",
+          "pdf_page": 143,
+          "quotes": [
+            "putative explanation for double descent",
+            "interpolates between the nearest data points increasingly smoothly"
+          ]
+        },
+        {
+          "source_id": "Notebooks/Chap08/8_3_Double_Descent.ipynb",
+          "chapter": "8",
+          "cell_index": 5,
+          "quotes": [
+            "def weights_init(layer_in):"
+          ],
+          "symbol": "weights_init"
+        }
+      ]
+    },
+    {
+      "id": "c88-mixed",
+      "query": "How is 1D discrete convolution defined in equation 10.3 of chapter 10, and where is matplotlib used to plot the signal in notebook 10.1?",
+      "category": "mixed",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "10",
+          "pdf_page": 177,
+          "equation_number": "10.3"
+        },
+        {
+          "source_id": "Notebooks/Chap10/10_1_1D_Convolution.ipynb",
+          "chapter": "10",
+          "cell_index": 5,
+          "quotes": [
+            "Draw the signal"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c89-mixed",
+      "query": "What equation computes query-key attention weights in chapter 12 (equation 12.5), and where are query-key-value weight matrices defined in notebook 12.1?",
+      "category": "mixed",
+      "split": "development",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "12",
+          "pdf_page": 224,
+          "equation_number": "12.5"
+        },
+        {
+          "source_id": "Notebooks/Chap12/12_1_Self_Attention.ipynb",
+          "chapter": "12",
+          "cell_index": 6,
+          "quotes": [
+            "omega_q = np.random.normal",
+            "omega_k = np.random.normal",
+            "omega_v = np.random.normal"
+          ],
+          "symbol_names": [
+            "omega_q",
+            "omega_k",
+            "omega_v"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c90-mixed",
+      "query": "How is the ELBO objective formulated in equation 17.15 of chapter 17, and where is 3D latent-observed variable plotting described in notebook 17.1?",
+      "category": "mixed",
+      "split": "heldout",
+      "expected": [
+        {
+          "source_id": "book",
+          "chapter": "17",
+          "pdf_page": 347,
+          "equation_number": "17.15"
+        },
+        {
+          "source_id": "Notebooks/Chap17/17_1_Latent_Variable_Models.ipynb",
+          "chapter": "17",
+          "cell_index": 5,
+          "quotes": [
+            "3D relation between the two observed variables"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c91-unsupported",
+      "query": "How does the Mamba selective state space architecture replace multi-head attention in long sequence modeling?",
+      "category": "unsupported",
+      "split": "development",
+      "unsupported": true,
+      "expected": []
+    },
+    {
+      "id": "c92-unsupported",
+      "query": "Explain the quantum backpropagation algorithm used to compute gradients across parameterized quantum circuits.",
+      "category": "unsupported",
+      "split": "development",
+      "unsupported": true,
+      "expected": []
+    },
+    {
+      "id": "c93-unsupported",
+      "query": "Describe the Evoformer architecture and invariant point attention mechanism utilized in AlphaFold 2.",
+      "category": "unsupported",
+      "split": "development",
+      "unsupported": true,
+      "expected": []
+    },
+    {
+      "id": "c94-unsupported",
+      "query": "How do you optimize Cypher graph database queries using Neo4j index-free adjacency traversal?",
+      "category": "unsupported",
+      "split": "development",
+      "unsupported": true,
+      "expected": []
+    },
+    {
+      "id": "c95-unsupported",
+      "query": "What is the LLVM instruction scheduling pass algorithm for superscalar out-of-order execution pipelines?",
+      "category": "unsupported",
+      "split": "development",
+      "unsupported": true,
+      "expected": []
+    },
+    {
+      "id": "c96-unsupported",
+      "query": "How does LoRA rank-stabilized adapter (rsLoRA) scale the learning rate with adapter rank r?",
+      "category": "unsupported",
+      "split": "development",
+      "unsupported": true,
+      "expected": []
+    },
+    {
+      "id": "c97-unsupported",
+      "query": "Explain the Whisper audio encoder architecture with Mel-frequency filterbank feature extraction.",
+      "category": "unsupported",
+      "split": "heldout",
+      "unsupported": true,
+      "expected": []
+    },
+    {
+      "id": "c98-unsupported",
+      "query": "Describe the FlashAttention-3 warp-specialized asynchronous memory pipelining algorithm on Hopper GPUs.",
+      "category": "unsupported",
+      "split": "heldout",
+      "unsupported": true,
+      "expected": []
+    },
+    {
+      "id": "c99-unsupported",
+      "query": "What are the convergence guarantees for Federated Averaging (FedAvg) under non-IID client distributions?",
+      "category": "unsupported",
+      "split": "heldout",
+      "unsupported": true,
+      "expected": []
+    },
+    {
+      "id": "c100-unsupported",
+      "query": "Explain the mathematical formulation of Flow Matching with optimal transport displacement interpolation paths.",
+      "category": "unsupported",
+      "split": "heldout",
+      "unsupported": true,
+      "expected": []
+    }
+  ]
+}

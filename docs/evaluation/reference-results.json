@@ -1,0 +1,61 @@
+{
+  "description": "Reference retrieval results from a locally reviewed development corpus; not an out-of-the-box public beta score. See ../EVALUATION.md.",
+  "benchmark_sha256": "33145a730b34134a1b48e9318742e70e02b86c89adf190db53091940550edeff",
+  "math_review_bundle_distributed": false,
+  "broader_split_pristine_holdout": false,
+  "development": {
+    "build_id": "build_20261107T083601Z_494e9910",
+    "split": "development",
+    "mode": "hybrid",
+    "case_count": 60,
+    "supported_hit_at_5": 0.9444444444444444,
+    "category_hit_at_5": {
+      "equation": 0.8333333333333334,
+      "figure": 1.0,
+      "mixed": 1.0,
+      "notebook_code": 0.9166666666666666,
+      "problem": 1.0,
+      "theory": 0.9444444444444444
+    },
+    "unsupported_abstention_accuracy": 1.0,
+    "citation_resolution_rate": 1.0,
+    "passed": true,
+    "supported_count": 54,
+    "supported_hits": 51
+  },
+  "broader_regression": {
+    "build_id": "build_20261107T083601Z_494e9910",
+    "split": "heldout",
+    "mode": "hybrid",
+    "case_count": 40,
+    "supported_hit_at_5": 0.75,
+    "category_hit_at_5": {
+      "equation": 1.0,
+      "figure": 0.5,
+      "mixed": 0.75,
+      "notebook_code": 1.0,
+      "problem": 1.0,
+      "theory": 0.5
+    },
+    "unsupported_abstention_accuracy": 1.0,
+    "citation_resolution_rate": 1.0,
+    "passed": false,
+    "supported_count": 36,
+    "supported_hits": 27
+  },
+  "source_code_sha256": {
+    "src/cli.py": "12d5087085d3c9b19ef8a71a50ca422aba2992ad53ae048316b5fcd0ef2bac9e",
+    "src/contracts.py": "220230424b6e9e09bc5c153b6f06265e5680c5cac4c2fe9535a3d18d7542d624",
+    "src/corpus.py": "556c4b0c7f8183ae5fb186b5f2dcad8c2a2ef9e59840b22c6d569526282dd0fa",
+    "src/dense.py": "1f0d8b3cbbb60dfce9caf6beda91c4e0ccbf54aa87ed3578df92c55631be5d64",
+    "src/evaluation.py": "5d5dd067b31ba5276fabf4b6939a587b84d16bcc6391b1641e0969e098fb40bb",
+    "src/providers.py": "f5b6d76d664a5d30f656c1936aaff4f1758ebf5f2bb3007a6c600aa22406aa3c",
+    "src/review_bundle.py": "f829bf3eb071c10f9714eb4ba5815750f94618f3e4692334c1a61517fcd4b23e",
+    "src/runtime.py": "84fe5daa30cbc69b58b39f56a2024da0f78e1361072ca911340c64599365dc91",
+    "src/search.py": "579a608ad1001b96185a65a1aa0b5cb57ad671942be5deb798188b1e7a70d811",
+    "src/snapshots.py": "6143cd491ade7e68833ffd3a654649cfaef7bffbb0774b4fae976930d55c25a5",
+    "src/store.py": "e20484d656af91be8997721a3ca90d6f4098eaebbaa8d4b905ebc0708cd68974",
+    "src/tutor.py": "c1d0e9b9d362ffc8f28e99dcab8732327767a5b5d6480b57a988970db6238c4a",
+    "src/web.py": "f856376801e92012d3d0ea2448489f49fa82cbbc4a8a00e6898c522eaee1c633"
+  }
+}

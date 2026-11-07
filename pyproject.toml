@@ -1,0 +1,26 @@
+[project]
+name = "understanding-deep-learning-rag"
+version = "0.1.0b1"
+description = "A local-first study tutor with handwritten hybrid retrieval and SQLite provenance"
+readme = "README.md"
+requires-python = ">=3.10,<3.14"
+license = "AGPL-3.0-or-later"
+authors = [{ name = "Manya Kaistha" }]
+dependencies = [
+    "fastapi>=0.115,<1",
+    "httpx>=0.28,<1",
+    "nbformat>=5.10.4",
+    "numpy>=2.2.6",
+    "pillow>=12.0.0,<13",
+    "pymupdf>=1.26.5,<2",
+    "requests>=2.32.5",
+    "tqdm>=4.67.1",
+    "uvicorn>=0.34,<1",
+]
+
+[project.optional-dependencies]
+semantic = ["torch>=2.9.0,<3", "transformers>=4.57.1,<5"]
+
+[project.urls]
+Repository = "https://github.com/manyakaistha/understanding-deep-learning-rag"
+Issues = "https://github.com/manyakaistha/understanding-deep-learning-rag/issues"

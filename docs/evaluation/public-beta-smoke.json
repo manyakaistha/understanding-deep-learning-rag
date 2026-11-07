@@ -1,0 +1,56 @@
+{
+  "release_version": "0.1.0b1",
+  "checks": {
+    "clean_default_install": "passed",
+    "first_run_source_download_and_lexical_build": "passed",
+    "sqlite_integrity": "ok",
+    "offline_fixture_successes": 81,
+    "offline_skips": "two real-source suites and one optional real-encoder check",
+    "with_real_sources": {
+      "tests_run": 99,
+      "passed": 98,
+      "optional_skipped": 1
+    },
+    "frontend_checks_passed": 9,
+    "lockfile": "passed",
+    "javascript_syntax": "passed"
+  },
+  "corpus_counts": {
+    "sources": 70,
+    "chunks": 3037,
+    "by_content_type": {
+      "algorithm": 2,
+      "code": 910,
+      "equation": 500,
+      "exercise": 197,
+      "figure": 285,
+      "markdown": 467,
+      "text": 676
+    },
+    "by_modality": {
+      "code": 910,
+      "equation": 500,
+      "exercise": 558,
+      "figure": 287,
+      "text": 1143
+    },
+    "equations_total": 500,
+    "equations_verified": 0,
+    "equations_pending": 500,
+    "figures_total": 285,
+    "figures_verified": 285,
+    "figures_pending": 0,
+    "algorithms_total": 2,
+    "algorithms_verified": 2,
+    "algorithms_pending": 0,
+    "embeddings": 0
+  },
+  "public_math_review_status": "500 pending; development transcription bundle is not redistributed",
+  "lexical_probe": {
+    "query": "gradient_descent_step",
+    "mode": "lexical",
+    "chunk_id": "nb_6_2_Gradient_Descent_c20_L1_7_gradient_descent_step",
+    "source_id": "Notebooks/Chap06/6_2_Gradient_Descent.ipynb"
+  },
+  "notes": "Fresh public export uses lexical retrieval by default. It is a beta, not full release qualification."
+}

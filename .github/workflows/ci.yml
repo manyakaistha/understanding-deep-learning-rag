@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install default dependencies
+        run: uv sync --locked
+
+      - name: Verify lockfile consistency
+        run: uv lock --check
+
+      - name: Run Python unit and contract tests
+        run: uv run python -B -m unittest discover -s tests -v
+
+      - name: Run frontend unit tests
+        run: node src/static/tests/run_tests.js
+
+      - name: Validate frontend JavaScript syntax
+        run: node --check src/static/app.js

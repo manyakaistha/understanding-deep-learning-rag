@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UDL Study Interface | Understanding Deep Learning Tutor</title>
+  
+  <!-- Pinned Local Vendor Assets (Zero external CDN / network calls) -->
+  <link rel="stylesheet" href="vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="vendor/prism/prism.min.css">
+  <link rel="stylesheet" href="app.css">
+
+  <script src="vendor/purify.min.js"></script>
+  <script src="vendor/marked.min.js"></script>
+  <script src="vendor/katex/katex.min.js"></script>
+  <script src="vendor/prism/prism.min.js"></script>
+  <script src="vendor/prism/prism-python.min.js"></script>
+  <script src="vendor/prism/prism-bash.min.js"></script>
+  <script src="vendor/prism/prism-json.min.js"></script>
+</head>
+<body>
+  <div class="app-root">
+    <!-- Top Navigation Header -->
+    <header class="top-header" role="banner">
+      <div class="header-left">
+        <button id="btn-toggle-sidebar" class="btn-icon" title="Toggle Navigation Sidebar" aria-label="Toggle Sidebar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+        <div class="brand">
+          <span class="brand-title">UDL Tutor</span>
+          <span class="brand-subtitle">Understanding Deep Learning &middot; Simon J.D. Prince</span>
+        </div>
+      </div>
+
+      <div class="header-center">
+        <div id="index-status-indicator" class="status-indicator-badge" title="Corpus Index Status">
+          <span class="status-dot status-loading"></span>
+          <span class="status-text">Connecting to store...</span>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <button id="btn-nav-reviews" class="btn btn-subtle" title="Open Equation Review Queue">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <span>Math Reviews</span>
+          <span id="nav-reviews-badge" class="badge-count" style="display:none;">0</span>
+        </button>
+        <button id="btn-toggle-rail" class="btn-icon" title="Toggle Source Inspection Rail" aria-label="Toggle Source Rail">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="app-body">
+      <!-- Left Sidebar: Controls, Chapters, Indexing -->
+      <aside id="sidebar" class="sidebar" role="complementary" aria-label="Configuration and Chapters">
+        <div class="sidebar-scroll">
+          <!-- Model & Provider Controls -->
+          <section class="sidebar-section">
+            <h2 class="section-title">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              Inference Provider
+            </h2>
+            <div class="field-group">
+              <label for="select-provider">Provider</label>
+              <select id="select-provider" class="form-control">
+                <option value="groq" selected>Groq (Fast Cloud)</option>
+                <option value="gemini">Google Gemini</option>
+                <option value="openai_compat">OpenAI Compatible</option>
+                <option value="ollama">Ollama (Local Inference)</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="input-model">Model Name</label>
+              <input type="text" id="input-model" class="form-control" value="" placeholder="Exact model ID from your provider">
+            </div>
+
+            <div class="field-group" id="group-api-key">
+              <label for="input-api-key">
+                API Key
+                <span class="security-tag" title="API keys are held in JS execution memory only; never saved to disk, sessionStorage, or localStorage">In-memory only</span>
+              </label>
+              <div class="password-input-wrapper">
+                <input type="password" id="input-api-key" class="form-control" placeholder="Enter provider API key" autocomplete="off" spellcheck="false">
+                <button type="button" id="btn-toggle-key-visibility" class="btn-eye" title="Toggle Visibility" aria-label="Toggle API Key Visibility">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+              <small class="field-note">Held in ephemeral JS memory. Never persisted.</small>
+            </div>
+
+            <div class="field-group" id="group-base-url">
+              <label for="input-base-url">Custom Base URL <span class="optional-tag">(Optional)</span></label>
+              <input type="text" id="input-base-url" class="form-control" placeholder="e.g. http://localhost:11434/v1">
+            </div>
+          </section>
+
+          <!-- Index Management -->
+          <section class="sidebar-section">
+            <h2 class="section-title">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              Corpus Index
+            </h2>
+            <div id="index-details-card" class="info-card">
+              <div class="info-row">
+                <span class="info-label">Active Build:</span>
+                <span id="lbl-active-build" class="info-value font-mono">None</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Chunks:</span>
+                <span id="lbl-chunk-count" class="info-value">0</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Vectors:</span>
+                <span id="lbl-dense-status" class="info-value">Not indexed</span>
+              </div>
+            </div>
+
+            <div class="build-controls">
+              <label class="checkbox-label" for="chk-semantic-build">
+                <input type="checkbox" id="chk-semantic-build" checked>
+                <span>Include Dense Embeddings</span>
+              </label>
+              <label class="checkbox-label" for="chk-offline-build">
+                <input type="checkbox" id="chk-offline-build">
+                <span>Offline / Local Cache Only</span>
+              </label>
+              <button id="btn-build-index" class="btn btn-secondary btn-full">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span>Build Local Index</span>
+              </button>
+              <div id="build-progress-msg" class="build-status-msg" style="display:none;"></div>
+            </div>
+          </section>
+
+          <!-- Chapter Navigation -->
+          <section class="sidebar-section">
+            <h2 class="section-title">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              Chapter Filter
+            </h2>
+            <div class="chapter-list-container">
+              <ul id="chapter-nav-list" class="chapter-nav-list" role="list">
+                <!-- Dynamically populated or static baseline -->
+                <li class="chapter-nav-item active" data-chapter="">All Chapters & Notebooks</li>
+                <li class="chapter-nav-item" data-chapter="1">Chap 1: Introduction</li>
+                <li class="chapter-nav-item" data-chapter="2">Chap 2: Supervised Learning</li>
+                <li class="chapter-nav-item" data-chapter="3">Chap 3: Shallow Neural Networks</li>
+                <li class="chapter-nav-item" data-chapter="4">Chap 4: Deep Neural Networks</li>
+                <li class="chapter-nav-item" data-chapter="5">Chap 5: Loss Functions</li>
+                <li class="chapter-nav-item" data-chapter="6">Chap 6: Fitting Models</li>
+                <li class="chapter-nav-item" data-chapter="7">Chap 7: Gradients & Initialization</li>
+                <li class="chapter-nav-item" data-chapter="8">Chap 8: Measuring Performance</li>
+                <li class="chapter-nav-item" data-chapter="9">Chap 9: Regularization</li>
+                <li class="chapter-nav-item" data-chapter="10">Chap 10: Convolutional Networks</li>
+                <li class="chapter-nav-item" data-chapter="11">Chap 11: Residual Networks</li>
+                <li class="chapter-nav-item" data-chapter="12">Chap 12: Transformers</li>
+                <li class="chapter-nav-item" data-chapter="13">Chap 13: Graph Neural Networks</li>
+                <li class="chapter-nav-item" data-chapter="14">Chap 14: Unsupervised Learning</li>
+                <li class="chapter-nav-item" data-chapter="15">Chap 15: Generative Adversarial Networks</li>
+                <li class="chapter-nav-item" data-chapter="16">Chap 16: Normalizing Flows</li>
+                <li class="chapter-nav-item" data-chapter="17">Chap 17: Variational Autoencoders</li>
+                <li class="chapter-nav-item" data-chapter="18">Chap 18: Diffusion Models</li>
+                <li class="chapter-nav-item" data-chapter="19">Chap 19: Reinforcement Learning</li>
+                <li class="chapter-nav-item" data-chapter="20">Chap 20: Why Does Deep Learning Work?</li>
+                <li class="chapter-nav-item" data-chapter="21">Chap 21: Ethics</li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </aside>
+
+      <!-- Central Workspace -->
+      <main id="main-workspace" class="main-workspace" role="main">
+        <!-- View Tabs Bar -->
+        <div class="workspace-tabs-bar" role="tablist">
+          <button id="tab-btn-ask" class="tab-btn active" role="tab" aria-selected="true" aria-controls="view-ask">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span>Ask Tutor</span>
+          </button>
+          <button id="tab-btn-search" class="tab-btn" role="tab" aria-selected="false" aria-controls="view-search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span>Search Corpus</span>
+          </button>
+          <button id="tab-btn-reviews" class="tab-btn" role="tab" aria-selected="false" aria-controls="view-reviews">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>Math Review Queue</span>
+            <span id="tab-reviews-badge" class="badge-count" style="display:none;">0</span>
+          </button>
+        </div>
+
+        <!-- Retrieval & Search Filters Header Bar -->
+        <div class="query-filters-bar">
+          <div class="filter-item">
+            <label for="select-mode">Retrieval Mode</label>
+            <select id="select-mode" class="form-select-sm">
+              <option value="hybrid" selected>Hybrid (BM25 + Dense RRF)</option>
+              <option value="lexical">Lexical (BM25 Only)</option>
+              <option value="semantic">Semantic (Dense Cosine Only)</option>
+            </select>
+          </div>
+
+          <div class="filter-item">
+            <label for="select-modality">Modality</label>
+            <select id="select-modality" class="form-select-sm">
+              <option value="all" selected>All Modalities</option>
+              <option value="text">Text Only</option>
+              <option value="code">Code (Notebook Cells)</option>
+              <option value="figure">Figures & Captions</option>
+              <option value="equation">Display Equations</option>
+              <option value="exercise">Exercises</option>
+            </select>
+          </div>
+
+          <div class="filter-item">
+            <label for="select-chapter-filter">Chapter Scope</label>
+            <select id="select-chapter-filter" class="form-select-sm">
+              <option value="" selected>All Chapters</option>
+              <option value="1">Chap 1: Introduction</option>
+              <option value="2">Chap 2: Supervised Learning</option>
+              <option value="3">Chap 3: Shallow Neural Networks</option>
+              <option value="4">Chap 4: Deep Neural Networks</option>
+              <option value="5">Chap 5: Loss Functions</option>
+              <option value="6">Chap 6: Fitting Models</option>
+              <option value="7">Chap 7: Gradients & Init</option>
+              <option value="8">Chap 8: Measuring Performance</option>
+              <option value="9">Chap 9: Regularization</option>
+              <option value="10">Chap 10: ConvNets</option>
+              <option value="11">Chap 11: ResNets</option>
+              <option value="12">Chap 12: Transformers</option>
+              <option value="13">Chap 13: Graph Neural Nets</option>
+              <option value="14">Chap 14: Unsupervised Learning</option>
+              <option value="15">Chap 15: Generative Adversarial Networks</option>
+              <option value="16">Chap 16: Normalizing Flows</option>
+              <option value="17">Chap 17: Variational Autoencoders</option>
+              <option value="18">Chap 18: Diffusion Models</option>
+              <option value="19">Chap 19: Reinforcement Learning</option>
+              <option value="20">Chap 20: Why Does Deep Learning Work?</option>
+              <option value="21">Chap 21: Ethics</option>
+            </select>
+          </div>
+
+          <div class="filter-item filter-top-k">
+            <label for="input-top-k">Top K: <span id="lbl-top-k-val">6</span></label>
+            <input type="range" id="input-top-k" min="1" max="15" value="6" step="1">
+          </div>
+        </div>
+
+        <!-- VIEW 1: ASK TUTOR (CONVERSATION & STREAMING) -->
+        <div id="view-ask" class="workspace-view active" role="tabpanel">
+          <div id="chat-messages-container" class="chat-messages-container">
+            <!-- Welcome / Empty Index Greeting -->
+            <div id="chat-empty-state" class="empty-state-card">
+              <div class="empty-state-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+              </div>
+              <h3>Understanding Deep Learning Study Companion</h3>
+              <p class="empty-state-desc">Ask conceptual, mathematical, architectural, or code implementation questions. Answers include source citations you can check against textbook pages, reviewed equations, figures, and Python notebook cells.</p>
+              
+              <div class="sample-queries">
+                <span class="sample-title">Try asking:</span>
+                <div class="sample-chips">
+                  <button class="sample-chip" data-query="How does the shallow neural network define linear regions in input space?">Shallow net linear regions</button>
+                  <button class="sample-chip" data-query="Explain the residual connection and why it avoids vanishing gradients in ResNets.">ResNet skip connections</button>
+                  <button class="sample-chip" data-query="What is the reparameterization trick in Variational Autoencoders?">VAE reparameterization trick</button>
+                  <button class="sample-chip" data-query="How is multi-head self-attention computed mathematically in Transformers?">Transformer self-attention</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Messages appended dynamically -->
+          </div>
+
+          <!-- Chat Input Bar -->
+          <div class="chat-input-bar">
+            <div id="banner-chat-alert" class="chat-alert-banner" style="display:none;"></div>
+            <div class="input-composer-container">
+              <textarea id="chat-prompt-input" class="chat-textarea" placeholder="Ask a question about Understanding Deep Learning... (Shift+Enter for newline)" rows="2"></textarea>
+              <div class="composer-actions">
+                <button id="btn-clear-chat" class="btn btn-subtle" title="Clear in-memory chat history">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                  <span>Clear</span>
+                </button>
+                <button id="btn-stop-streaming" class="btn btn-danger" style="display:none;" title="Stop generation">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12"/></svg>
+                  <span>Stop</span>
+                </button>
+                <button id="btn-send-ask" class="btn btn-primary" title="Send Question (Enter)">
+                  <span>Ask Tutor</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW 2: SEARCH CORPUS (RETRIEVAL EXPLORER) -->
+        <div id="view-search" class="workspace-view" role="tabpanel">
+          <div class="search-top-bar">
+            <div class="search-input-wrap">
+              <input type="text" id="search-query-input" class="form-control" placeholder="Search chapters, equations, code cells, or terms (e.g. 'He initialization', 'Equation 7.12')...">
+              <button id="btn-run-search" class="btn btn-primary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <span>Search</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Search Summary & Results -->
+          <div id="search-results-container" class="search-results-container">
+            <div id="search-meta-bar" class="search-meta-bar" style="display:none;">
+              <span id="search-meta-info" class="search-meta-info"></span>
+              <span id="search-meta-warnings" class="search-meta-warnings"></span>
+            </div>
+            
+            <div id="search-empty-state" class="empty-state-card">
+              <p>Type a query and press Search to inspect ranked BM25, Cosine, and RRF retrieval results across book chapters and 69 Python notebooks.</p>
+            </div>
+
+            <div id="search-results-list" class="search-results-list"></div>
+          </div>
+        </div>
+
+        <!-- VIEW 3: MATH REVIEW QUEUE -->
+        <div id="view-reviews" class="workspace-view" role="tabpanel">
+          <div class="reviews-workspace-layout">
+            <!-- Review Queue Sidebar / List -->
+            <div class="reviews-list-pane">
+              <div class="reviews-list-header">
+                <h3>Pending Math Equations</h3>
+                <button id="btn-refresh-reviews" class="btn btn-subtle btn-sm" title="Refresh Review Queue">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                  <span>Refresh</span>
+                </button>
+              </div>
+              <div id="reviews-queue-list" class="reviews-queue-list">
+                <div class="loading-spinner-card">Loading pending equation reviews...</div>
+              </div>
+            </div>
+
+            <!-- Review Workbench -->
+            <div class="reviews-detail-pane">
+              <div id="review-workbench-empty" class="empty-state-card" style="margin-top:40px;">
+                <p>Select a pending equation from the left queue to inspect its crop and verify its LaTeX transcription.</p>
+              </div>
+
+              <div id="review-workbench-card" class="review-workbench-card" style="display:none;">
+                <div class="review-header">
+                  <div>
+                    <h3 id="review-chunk-title">Equation Review</h3>
+                    <span id="review-chunk-locator" class="font-mono text-muted"></span>
+                  </div>
+                  <div class="review-status-tag" id="review-status-tag">Pending Verification</div>
+                </div>
+
+                <!-- Equation Crop View -->
+                <div class="review-crop-container">
+                  <div class="crop-header">Source Image Crop:</div>
+                  <div class="crop-image-wrapper">
+                    <img id="review-crop-img" alt="Equation source crop" class="crop-img" src="">
+                    <div id="review-crop-fallback" class="crop-fallback" style="display:none;">
+                      Crop image unavailable for this equation chunk.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Live KaTeX Preview -->
+                <div class="review-preview-container">
+                  <div class="preview-header">Live Math Preview (KaTeX):</div>
+                  <div id="review-math-preview" class="katex-preview-box"></div>
+                </div>
+
+                <!-- LaTeX Transcription Editor -->
+                <div class="review-editor-container">
+                  <label for="review-latex-input">LaTeX Transcription:</label>
+                  <textarea id="review-latex-input" class="form-control font-mono" rows="3" placeholder="Enter clean LaTeX equation (e.g. y = \sigma(W x + b))"></textarea>
+                </div>
+
+                <!-- Reviewer Credentials & Decision Controls -->
+                <div class="review-controls-container">
+                  <div class="reviewer-input-group">
+                    <label for="review-reviewer-name">Reviewer Signature:</label>
+                    <input type="text" id="review-reviewer-name" class="form-control" placeholder="Your name or handle (e.g. Dr. Scholar)" value="Independent Reviewer">
+                  </div>
+                  <div class="review-actions">
+                    <button id="btn-decision-pending" class="btn btn-secondary">
+                      <span>Keep Pending</span>
+                    </button>
+                    <button id="btn-decision-verified" class="btn btn-success">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                      <span>Approve as Verified</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div id="review-submit-status" class="review-submit-status" style="display:none;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Right Inspection Rail: Source Detail & Asset Viewer (Collapsible) -->
+      <aside id="detail-rail" class="detail-rail collapsed" role="complementary" aria-label="Source Chunk Detail Rail">
+        <div class="rail-header">
+          <div class="rail-title-group">
+            <h3 class="rail-title">Source Inspector</h3>
+            <span id="rail-chunk-locator" class="rail-locator-subtitle">Select citation or chunk</span>
+          </div>
+          <button id="btn-close-rail" class="btn-icon" title="Close Rail" aria-label="Close Inspector">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <div id="rail-content" class="rail-content">
+          <!-- Rail Empty State -->
+          <div id="rail-empty-state" class="empty-state-card" style="margin-top:30px;">
+            <p>Click on any citation pill in the chat or inspection button in search results to view chunk metadata, verbatim code cells, figure crops, and original book PDF pages.</p>
+          </div>
+
+          <!-- Chunk Detail Card -->
+          <div id="rail-chunk-card" class="rail-chunk-card" style="display:none;">
+            <!-- Metadata Chips -->
+            <div class="metadata-grid">
+              <div class="meta-field">
+                <span class="meta-key">Chunk ID:</span>
+                <span id="rail-meta-chunk-id" class="meta-val font-mono"></span>
+              </div>
+              <div class="meta-field">
+                <span class="meta-key">Source ID:</span>
+                <span id="rail-meta-source-id" class="meta-val font-mono"></span>
+              </div>
+              <div class="meta-field">
+                <span class="meta-key">Content Type:</span>
+                <span id="rail-meta-content-type" class="meta-val"></span>
+              </div>
+              <div class="meta-field">
+                <span class="meta-key">Location:</span>
+                <span id="rail-meta-location" class="meta-val"></span>
+              </div>
+              <div class="meta-field">
+                <span class="meta-key">Review:</span>
+                <span id="rail-meta-review-status" class="meta-val"></span>
+              </div>
+              <div class="meta-field">
+                <span class="meta-key">Build ID:</span>
+                <span id="rail-meta-build-id" class="meta-val font-mono"></span>
+              </div>
+            </div>
+
+            <!-- Asset Crop Image (Figures and Equations) -->
+            <div id="rail-asset-container" class="rail-section" style="display:none;">
+              <h4 class="rail-section-header">Visual Crop Asset</h4>
+              <div class="rail-crop-box">
+                <img id="rail-asset-img" alt="Visual asset crop" src="">
+              </div>
+            </div>
+
+            <div id="rail-transcription-section" class="rail-section" style="display:none;">
+              <h4 class="rail-section-header">Verified transcription</h4>
+              <div id="rail-transcription" style="overflow-x:auto;"></div>
+            </div>
+
+            <!-- Verbatim Content / Code -->
+            <div class="rail-section">
+              <div class="rail-section-header-row">
+                <h4 class="rail-section-header">Verbatim Content</h4>
+                <button id="btn-copy-verbatim" class="btn btn-subtle btn-xs" title="Copy verbatim content">Copy</button>
+              </div>
+              <div id="rail-verbatim-container" class="rail-verbatim-box font-mono"></div>
+            </div>
+
+            <!-- Embedded PDF Source Viewer (when book chunk has pdf_page) -->
+            <div id="rail-pdf-container" class="rail-section" style="display:none;">
+              <div class="rail-section-header-row">
+                <h4 class="rail-section-header">Original Textbook PDF Page</h4>
+                <a id="rail-pdf-open-link" class="link-external btn-xs" target="_blank" rel="noopener noreferrer">Open Tab &nearr;</a>
+              </div>
+              <div class="pdf-iframe-wrapper">
+                <iframe id="rail-pdf-iframe" title="Original Book Page PDF Preview" src="about:blank"></iframe>
+              </div>
+            </div>
+
+            <!-- Notebook Link -->
+            <div id="rail-notebook-container" class="rail-section" style="display:none;">
+              <div class="rail-section-header-row">
+                <h4 class="rail-section-header">Notebook Source</h4>
+                <a id="rail-notebook-open-link" class="link-external btn-xs" target="_blank" rel="noopener noreferrer">Download / View IPYNB &nearr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Main Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>
